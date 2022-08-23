@@ -14,7 +14,7 @@
                 @csrf
                 @method('PUT')
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="mb-3">
                             <label for="firstNameinput" class="form-label">Title </label>
                             {!! Form::text('pages_title', null, [
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="mb-3">
                             <label for="firstNameinput" class="form-label">Slug</label>
                             {!! Form::text('pages_slug', null, [
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="mb-3">
                             <label for="firstNameinput" class="form-label">Description</label>
                             {!! Form::textarea('pages_description', null, [
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="mb-3">
                             <label for="firstNameinput" class="form-label">Image</label>
                             {!! Form::file('pages_image', ['id' => 'profile-img-file-input', 'class'=>'form-control file-upload-info']) !!}
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="mb-3">
                             <label for="Forminputgender" class="form-label">Page Title</label>
                             {!! Form::select('pages_pageTitle', $pages_pageTitle, null, ['class'=>"form-control",'aria-label'=>"Text input with dropdown button"]) !!}
