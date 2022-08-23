@@ -34,15 +34,17 @@ class PageCreateValidation extends FormRequest
             'pages_slug' => 'required|unique:pages,pages_slug',
             'pages_description' => 'required',
             'pages_pageTitle' => 'required',
-            'pages_image' => 'required',
+            'pages_image' => 'required|mimes:png,jpeg,gif|image',
         ];
     }
     else{
         return[
             'pages_title' => 'required|min:4',
             'pages_slug' =>'required|unique:pages,pages_slug,'.$this->page.',pages_id',
-            'pages_description' => 'required' ,
+            'pages_description' => 'required',
             'pages_pageTitle' => 'required',
+            'pages_image' => 'mimes:png,jpeg,gif|image',
+          
 
         ];
     }
@@ -57,6 +59,8 @@ class PageCreateValidation extends FormRequest
             'pages_description.description'=>" Page Description  can't be Empty",
             'pages_pageTitle.required'=>"PageTitle is required",
             "pages_image.required"=>"Image can't be Empty",
+            "pages_image.image"=>"Image can't be Empty",
+            "pages_image.mimes"=>"Image png,jpeg,gif only  supported",
 
 
          
