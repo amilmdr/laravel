@@ -37,6 +37,7 @@
  <!-- Custom js for this page -->
  <script src="http://laravelpracticeintern.test/assets/js/dashboard.js"></script>
  <!-- End custom js for this page -->
+ {{-- csrf token --}}
  <script type="text/javascript">
   $.ajaxSetup({
     headers: {
@@ -44,6 +45,7 @@
     }
   });
 </script>
+{{-- Unique slug generation --}}
 <script>
   const slug = document.getElementById('slug');
   const h_slug = document.getElementById('h_slug');
@@ -82,13 +84,18 @@
       });
   
 </script>
-
+{{-- session message time limitation --}}
 <script>
   $("document").ready(function(){
     setTimeout(function(){
         $("#message_id").remove();
     }, 5000 );
 });
+</script>
+{{-- ckeditor --}}
+<script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace('pages_description');
 </script>
 
 
