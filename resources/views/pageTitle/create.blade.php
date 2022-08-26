@@ -14,7 +14,7 @@
 
                 @csrf
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="mb-3">
                             <label for="firstNameinput" class="form-label">Name </label>
                             {!! Form::text('page_titles_name', null, [
@@ -34,6 +34,23 @@
                         </div>
                     </div>
                 </div>
+                {{-- <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="firstNameinput" class="form-label">CSV or Excel File</label>
+                            {!! Form::file('file', ['class' => 'form-control file-upload-info',
+                            'accept'=>".csv,.xlsx"]) !!}
+                            @if ($errors->has('file'))
+                                <div class="invalid-feedback">{{ $errors->first('file') }}</div>
+                                <span class="text-danger">{{ $errors->first('file') }}</span>
+                            @else
+                                <div class="valid-feedback">
+
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div> --}}
                 {!! Form::submit('Save',['class' => 'btn btn-primary btn-fw']) !!}
                 <a href="{{ route('page.index') }}" class="btn btn-dark">Cancel</a>
                 <!--end col-->

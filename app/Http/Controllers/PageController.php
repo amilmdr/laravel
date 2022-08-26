@@ -5,18 +5,42 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Page;
 use File;
+use Intervention\Image\Facades\Image;
 use App\Http\Requests\PageCreateValidation;
 use App\Http\Requests\PageUpdateValidation;
 use Illuminate\Pagination\Paginator;
 use App\Models\PageTitle;
 
 class PageController extends Controller
-{
+{ private $uploadpath;
+    private $thumbpath;
+    private $width;
+    private $height;
     public function __construct()
     {
         $this->middleware('auth')
         ->except('logout');
+
+
+        $this->uploadpath = public_path("/images");
+        $this->thumbpath = public_path("/images/thumb");
+        $this->width = 200;
+        $this->height = 200;
+
+        if(!File::exists($this->uploadpath)) {
+            File::makeDirectory($this->uploadpath, 0777, true, true);
+        }
+
+        if(!File::exists($this->thumbpath)) {
+            File::makeDirectory($this->thumbpath, 0777, true, true);
+        }
     }
+
+
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -48,18 +72,20 @@ class PageController extends Controller
      */
     public function store(PageCreateValidation $request)
     {
-        $path = public_path('/images');
+        // $path = public_path('/images');
 
-        if(!(File::isDirectory($path))){
-            File::makeDirectory($path, 0777, true, true);
-        }
+        // if(!(File::isDirectory($path))){
+        //     File::makeDirectory($path, 0777, true, true);
+        // }
 
         if($request->hasfile('pages_image'))
         {
             $pages_image = $request->file('pages_image');
             $filename = time() . "." . $pages_image->getClientOriginalExtension();
-            $pages_image->move($path, $filename);
-            // Image::make(public_path('/images/'.$filename))->resize(300,300)->save(public_path('/images/'.$filename));
+            $pages_image->move($this->uploadpath, $filename);
+            $resize_image = Image::make( $this->uploadpath.'/'.$filename);
+            // dd($resize_image);
+            $resize_image->resize($this->width,$this->height)->save( $this->thumbpath.'/' .$filename);
             // dd($pages_image);
                 // dd($request);
         $page= new Page();

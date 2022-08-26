@@ -64,7 +64,7 @@
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="firstNameinput" class="form-label">Description</label>
-                            {!! Form::textarea('pages_description', null, [
+                            {!! Form::text('pages_description', null, [
                                 'placeholder' => 'Enter your Page Title',
                                 'class' => 'form-control' . ($errors->has('page_description') ? ' form-error' : '') . '',
                                 'required',

@@ -21,12 +21,17 @@ use App\Http\Controllers\PageTitleController;
 //     return view('layout.index');
 // });
 
+// Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::group(['midddleware'=>['auth']],function(){
 
     Route::get('/','PageController@dashboardindex')->name('page.dashboardindex');
-    Route::get('/home','PageController@index')->name('page.index');
+    Route::get('/home','PageController@index')->name('page.index')->middleware('verified');
     Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
     Route::resource('page','PageController'); 
     Route::resource('page_titlt','PageTitleController');
+    // for the view page 
+    route::get('/csvFileImport','PageTitleController@csvFileImport'); 
+    //for save 
+    route::POST('/csvFileImportSave','PageTitleController@csvFileImportSave');
 });
-Auth::routes();
+Auth::routes(['verify' => true]);

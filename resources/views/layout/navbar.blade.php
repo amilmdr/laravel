@@ -94,6 +94,7 @@
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="{{ route('page_titlt.index') }}">Index</a></li>
               <li class="nav-item"> <a class="nav-link" href="{{ route('page_titlt.create') }}">Create</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/csvFileImport">csvFileImport</a></li>
             </ul>
           </div>
         </li>

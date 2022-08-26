@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\PageTitle;
 use App\Http\Requests\PageTitleCreateValidation;
 use App\Http\Requests\PageTitleUpdateValidation;
+use App\Imports\PageTitleImport;
+use Excel;
 
 class PageTitleController extends Controller
 {
@@ -117,5 +119,22 @@ class PageTitleController extends Controller
         request()->session()->flash('message','Record Delete Successfully');
         return redirect(route('page_titlt.index'));
         
+    }
+    public function csvFileImport(){
+        return view('pageTitle.csvFileImport');
+    }
+
+    public function csvFileImportSave(Request $request){
+        // Excel::import(new PageTitleImport,$request->file);
+        // alternative 
+        $imports=new PageTitleImport;
+        $imports->import($request->file);
+        if($imports->failures()->isNotEmpty()){
+            return back()->withFailures($imports->failures());
+        }
+     
+
+       request()->session()->flash('message','record save!!!!');
+       return redirect(route('page_titlt.index'));
     }
 }
